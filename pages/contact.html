@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — LUXE</title>
+
+  <!-- ─── Google Fonts ─── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- ─── EmailJS Browser SDK ─── -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    /* ─── Reset & Base ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:   #0D0C0B;   /* Deep charcoal */
+      --cream:  #F5F0EA;   /* Warm ivory */
+      --taupe:  #A9A29A;   /* Secondary taupe */
+      --gold:   #9A7945;   /* Primary antique gold */
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: "Montserrat", sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────── */
+    .luxe-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.75rem 3.5rem;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      border: none;
+    }
+
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: .35em;
+      color: var(--cream);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .3s ease;
+    }
+
+    .nav-logo:hover { color: var(--gold); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-icon-link {
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: color .3s ease;
+      position: relative;
+    }
+
+    .nav-icon-svg {
+      width: 19px;
+      height: 19px;
+      transition: stroke .3s ease;
+    }
+
+    .nav-icon-link:hover { color: var(--gold); }
+
+    .wishlist-badge,
+    .bag-badge {
+      position: absolute;
+      top: -4px; right: -6px;
+      width: 15px; height: 15px;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      border-radius: 50%;
+      display: none !important;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .wishlist-badge.has-items,
+    .bag-badge.has-items {
+      display: inline-flex !important;
+    }
+
+    /* ─── CONTACT MAIN CONTENT ───────────────────────────────── */
+    .contact-main {
+      flex: 1;
+      padding: 9.5rem 3.5rem 7rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Header Intro */
+    .contact-header {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .contact-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.5rem, 4.2vw, 3.8rem);
+      font-weight: 300;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: .85rem;
+    }
+
+    .contact-subtitle {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+      letter-spacing: .02em;
+    }
+
+    .contact-lead {
+      font-family: "Montserrat", sans-serif;
+      font-size: .82rem;
+      font-weight: 300;
+      line-height: 1.7;
+      letter-spacing: .03em;
+      color: var(--taupe);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Contact Two-Column Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* Left Column: Get In Touch */
+    .contact-info-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 2.5rem;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.1rem;
+    }
+
+    .info-icon-wrap {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .info-icon-wrap svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .info-details {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+    }
+
+    .info-label {
+      font-family: "Montserrat", sans-serif;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      color: var(--cream);
+    }
+
+    .info-value {
+      font-family: "Montserrat", sans-serif;
+      font-size: .82rem;
+      font-weight: 300;
+      letter-spacing: .03em;
+      color: var(--taupe);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+
+    a.info-value:hover {
+      color: var(--gold);
+    }
+
+    .social-section {
+      margin-top: 2.75rem;
+    }
+
+    .social-label {
+      font-family: "Montserrat", sans-serif;
+      font-size: .8rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+    }
+
+    .social-links-row {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .contact-social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      font-family: "Montserrat", sans-serif;
+      font-size: .82rem;
+      font-weight: 300;
+      letter-spacing: .03em;
+      color: var(--cream);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+
+    .contact-social-link svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--gold);
+      transition: fill .3s ease;
+    }
+
+    .contact-social-link:hover {
+      color: var(--gold);
+    }
+
+    /* Right Column: Send A Message Form */
+    .contact-form-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .field-group {
+      width: 100%;
+    }
+
+    .contact-input {
+      width: 100%;
+      background: rgba(13, 12, 11, 0.7);
+      border: 1px solid rgba(245, 240, 234, 0.2);
+      border-radius: 10px;
+      color: var(--cream);
+      font-family: "Montserrat", sans-serif;
+      font-size: .82rem;
+      font-weight: 300;
+      padding: 1.05rem 1.4rem;
+      outline: none;
+      transition: border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .contact-input::placeholder {
+      color: rgba(169, 162, 154, 0.6);
+    }
+
+    .contact-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 12px rgba(154, 121, 69, 0.25);
+    }
+
+    textarea.contact-input {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .contact-btn {
+      width: 100%;
+      border-radius: 30px;
+      border: 1px solid rgba(154, 121, 69, 0.6);
+      background: rgba(13, 12, 11, 0.85);
+      color: var(--cream);
+      font-family: "Montserrat", sans-serif;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      padding: 1.15rem 2.5rem;
+      cursor: pointer;
+      margin-top: .5rem;
+      transition: background .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease;
+    }
+
+    .contact-btn:hover:not(:disabled) {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+      box-shadow: 0 0 16px rgba(154, 121, 69, 0.35);
+    }
+
+    .contact-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .contact-status {
+      font-family: "Montserrat", sans-serif;
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .03em;
+      margin-top: .75rem;
+      min-height: 1.2rem;
+      text-align: center;
+      transition: opacity .3s ease;
+    }
+
+    .contact-status.status-success {
+      color: var(--gold);
+    }
+
+    .contact-status.status-error {
+      color: #E57373;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .luxe-footer {
+      background: #080807;
+      border-top: 1px solid rgba(154, 121, 69, 0.3);
+      color: var(--cream);
+      padding: 5rem 3.5rem 2.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 3rem 2.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: .15em;
+      color: var(--cream);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      transition: color .3s ease;
+    }
+
+    .footer-logo:hover { color: var(--gold); }
+
+    .footer-desc {
+      font-family: "Montserrat", sans-serif;
+      font-size: .78rem;
+      font-weight: 300;
+      letter-spacing: .03em;
+      line-height: 1.6;
+      color: var(--taupe);
+      max-width: 28ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-heading {
+      font-family: "Montserrat", sans-serif;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .footer-link {
+      font-family: "Montserrat", sans-serif;
+      font-size: .78rem;
+      font-weight: 300;
+      letter-spacing: .03em;
+      color: var(--taupe);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+
+    .footer-link:hover { color: var(--gold); }
+
+    .footer-social-icons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .social-icon-link {
+      color: var(--taupe);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: color .3s ease, transform .3s ease;
+    }
+
+    .social-icon-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .social-icon-link:hover {
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(245, 240, 234, 0.08);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copyright {
+      font-family: "Montserrat", sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--taupe);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom-link {
+      font-family: "Montserrat", sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--taupe);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+
+    .footer-bottom-link:hover { color: var(--gold); }
+
+    .footer-divider {
+      color: rgba(245, 240, 234, 0.2);
+      font-size: .72rem;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .luxe-nav { padding: 1.5rem 2rem; }
+      .contact-main { padding: 8.5rem 2rem 5.5rem; }
+      .contact-grid { gap: 3.5rem; }
+      .luxe-footer { padding: 4rem 2rem 2rem; }
+      .footer-grid { grid-template-columns: 2fr repeat(2, 1fr); gap: 3rem 2rem; }
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem 1.5rem;
+      }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .luxe-nav { padding: 1.25rem 1.25rem; }
+      .contact-main { padding: 7rem 1.25rem 4rem; }
+      .contact-header { margin-bottom: 3rem; }
+      .contact-title { font-size: 2.2rem; }
+      .luxe-footer { padding: 3.5rem 1.25rem 1.75rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.25rem; padding-bottom: 3rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ───────────────────────────────────────────── -->
+  <nav class="luxe-nav">
+    <div class="nav-left">
+      <a class="nav-logo" href="../index.html">LUXE</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="wishlist.html" class="nav-icon-link" id="nav-wishlist-link" aria-label="Wishlist">
+        <svg class="nav-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="wishlist-badge" id="wishlist-badge"></span>
+      </a>
+
+      <a href="bag.html" class="nav-icon-link" id="nav-bag-link" aria-label="Shopping Bag">
+        <svg class="nav-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 9H18V20C18 20.55 17.55 21 17 21H7C6.45 21 6 20.55 6 20V9Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M9 9V6C9 4.34 10.34 3 12 3C13.66 3 15 4.34 15 6V9" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="bag-badge" id="bag-badge"></span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ─── MAIN CONTACT SECTION ──────────────────────────────── -->
+  <main class="contact-main">
+
+    <!-- Contact Header -->
+    <header class="contact-header">
+      <h1 class="contact-title">CONTACT US</h1>
+      <p class="contact-subtitle">We&#8217;d love to hear from you.</p>
+      <p class="contact-lead">
+        Whether you have a question about an order, need help choosing an item, or simply want to get in touch, our team is here to help.
+      </p>
+    </header>
+
+    <!-- Contact Two-Column Grid -->
+    <div class="contact-grid">
+
+      <!-- Left Column: GET IN TOUCH -->
+      <div class="contact-info-col">
+        <h2 class="section-heading">GET IN TOUCH</h2>
+
+        <div class="info-list">
+          <!-- Item 1: Email -->
+          <div class="info-item">
+            <div class="info-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="info-details">
+              <span class="info-label">Email</span>
+              <a href="mailto:hello@luxe.com" class="info-value">hello@luxe.com</a>
+            </div>
+          </div>
+
+          <!-- Item 2: Customer Care -->
+          <div class="info-item">
+            <div class="info-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="info-details">
+              <span class="info-label">Customer Care</span>
+              <span class="info-value">Mon&#8211;Sat, 10:00 AM &#8211; 6:00 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Follow -->
+        <div class="social-section">
+          <p class="social-label">Follow LUXE</p>
+          <div class="social-links-row">
+            <a href="#" class="contact-social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <span>Instagram</span>
+            </a>
+            <a href="#" class="contact-social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/>
+              </svg>
+              <span>Facebook</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: SEND A MESSAGE -->
+      <div class="contact-form-col">
+        <h2 class="section-heading">SEND A MESSAGE</h2>
+
+        <form class="contact-form" id="contact-form">
+          <div class="field-group">
+            <input type="text" id="from_name" name="from_name" class="contact-input" placeholder="Your name *" required />
+          </div>
+
+          <div class="field-group">
+            <input type="email" id="from_email" name="from_email" class="contact-input" placeholder="Your email address *" required />
+          </div>
+
+          <div class="field-group">
+            <input type="text" id="subject" name="subject" class="contact-input" placeholder="What can we help you with? *" required />
+          </div>
+
+          <div class="field-group">
+            <textarea id="message" name="message" class="contact-input" rows="5" placeholder="Write your message... *" required></textarea>
+          </div>
+
+          <button type="submit" id="contact-submit" class="contact-btn">SEND MESSAGE</button>
+
+          <div id="contact-status" class="contact-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="luxe-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand & Social -->
+        <div class="footer-brand">
+          <a href="../index.html" class="footer-logo">LUXE</a>
+          <p class="footer-desc">Timeless pieces designed for your everyday wardrobe.</p>
+          <div class="footer-social-icons">
+            <a href="#" class="social-icon-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: SHOP -->
+        <div>
+          <h3 class="footer-heading">SHOP</h3>
+          <ul class="footer-links-list">
+            <li><a href="../index.html#new-arrivals" class="footer-link">New Arrivals</a></li>
+            <li><a href="../index.html#dresses" class="footer-link">Dresses</a></li>
+            <li><a href="../index.html#tops" class="footer-link">Tops</a></li>
+            <li><a href="../index.html#bottoms" class="footer-link">Bottoms</a></li>
+            <li><a href="../index.html#sets" class="footer-link">Sets</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: HELP -->
+        <div>
+          <h3 class="footer-heading">HELP</h3>
+          <ul class="footer-links-list">
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+
+          </ul>
+        </div>
+
+        <!-- Column 4: ABOUT -->
+        <div>
+          <h3 class="footer-heading">ABOUT</h3>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-link">About LUXE</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: SOCIAL -->
+        <div>
+          <h3 class="footer-heading">SOCIAL</h3>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Instagram</a></li>
+            <li><a href="#" class="footer-link">Facebook</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 LUXE. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy-policy.html" class="footer-bottom-link">Privacy Policy</a>
+          <span class="footer-divider" aria-hidden="true">|</span>
+          <a href="terms.html" class="footer-bottom-link">Terms &amp; Conditions</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ─── JS & EMAILJS LOGIC ─────────────────────────────────── -->
+  <script>
+    // Initialize EmailJS
+    (function() {
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init({
+          publicKey: "MHnYua4kmwBN4CWZD"
+        });
+      }
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wishlist Badge Counter
+      const wishlistBadge = document.getElementById('wishlist-badge');
+
+      function updateWishlistBadge() {
+        const rawStored = JSON.parse(localStorage.getItem('luxe_wishlist') || '[]');
+        const validStored = Array.isArray(rawStored)
+          ? rawStored.filter(id => typeof id === 'string' && id.includes('_'))
+          : [];
+        if (wishlistBadge) {
+          if (validStored.length > 0) {
+            wishlistBadge.textContent = validStored.length;
+            wishlistBadge.classList.add('has-items');
+          } else {
+            wishlistBadge.textContent = '';
+            wishlistBadge.classList.remove('has-items');
+          }
+        }
+      }
+
+      updateWishlistBadge();
+
+      // Bag Badge Counter
+      const bagBadge = document.getElementById('bag-badge');
+
+      function updateBagBadge() {
+        try {
+          const raw = JSON.parse(localStorage.getItem('luxe_bag') || '[]');
+          const items = Array.isArray(raw) ? raw : [];
+          const totalQty = items.reduce((acc, item) => acc + (item.qty || 1), 0);
+          if (bagBadge) {
+            if (totalQty > 0) {
+              bagBadge.textContent = totalQty;
+              bagBadge.classList.add('has-items');
+            } else {
+              bagBadge.textContent = '';
+              bagBadge.classList.remove('has-items');
+            }
+          }
+        } catch (e) {}
+      }
+
+      updateBagBadge();
+
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'luxe_wishlist') {
+          updateWishlistBadge();
+        }
+        if (e.key === 'luxe_bag') {
+          updateBagBadge();
+        }
+      });
+
+      // Contact Form EmailJS Handling
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('contact-submit');
+      const statusMsg = document.getElementById('contact-status');
+
+      if (contactForm && submitBtn && statusMsg) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          if (!contactForm.checkValidity()) {
+            contactForm.reportValidity();
+            return;
+          }
+
+          const originalBtnText = submitBtn.textContent;
+          submitBtn.textContent = 'SENDING...';
+          submitBtn.disabled = true;
+          statusMsg.className = 'contact-status';
+          statusMsg.textContent = '';
+
+          // Send form via EmailJS
+          emailjs.sendForm('service_tnltrcm', 'template_t9ri2kg', contactForm)
+            .then(() => {
+              statusMsg.textContent = 'Thank you. Your message has been sent.';
+              statusMsg.className = 'contact-status status-success';
+              contactForm.reset();
+              submitBtn.textContent = originalBtnText;
+              submitBtn.disabled = false;
+            })
+            .catch((error) => {
+              console.error('EmailJS Error:', error);
+              statusMsg.textContent = 'Something went wrong. Please try again.';
+              statusMsg.className = 'contact-status status-error';
+              submitBtn.textContent = originalBtnText;
+              submitBtn.disabled = false;
+            });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

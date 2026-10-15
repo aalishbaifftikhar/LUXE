@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms &amp; Conditions — LUXE</title>
+
+  <!-- ─── Google Fonts ─── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:   #0D0C0B;   /* Deep charcoal */
+      --cream:  #F5F0EA;   /* Warm ivory */
+      --taupe:  #A9A29A;   /* Secondary taupe */
+      --gold:   #9A7945;   /* Primary antique gold */
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: "Montserrat", sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────── */
+.luxe-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.75rem 3.5rem;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      border: none;
+    }
+
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: .35em;
+      color: var(--cream);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .3s ease;
+    }
+
+    .nav-logo:hover { color: var(--gold); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-icon-link {
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: color .3s ease;
+      position: relative;
+    }
+
+    .nav-icon-svg {
+      width: 19px;
+      height: 19px;
+      transition: stroke .3s ease;
+    }
+
+    .nav-icon-link:hover { color: var(--gold); }
+
+    .wishlist-badge,
+    .bag-badge {
+      position: absolute;
+      top: -4px; right: -6px;
+      width: 15px; height: 15px;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      border-radius: 50%;
+      display: none !important;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .wishlist-badge.has-items,
+    .bag-badge.has-items {
+      display: inline-flex !important;
+    }
+
+    /* ─── TERMS & CONDITIONS MAIN ────────────────────────────── */
+    .terms-main {
+      flex: 1;
+      padding: 9.5rem 3.5rem 7rem;
+      width: 100%;
+    }
+
+    /* Page Header */
+    .terms-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .terms-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.5rem, 4.2vw, 3.8rem);
+      font-weight: 300;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: .85rem;
+    }
+
+    .terms-subtitle {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: .02em;
+      margin-bottom: 2rem;
+    }
+
+    .terms-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 1.5rem;
+    }
+
+    .terms-meta {
+      font-family: "Montserrat", sans-serif;
+      font-size: .75rem;
+      font-weight: 300;
+      letter-spacing: .08em;
+      color: var(--taupe);
+      text-transform: uppercase;
+    }
+
+    /* Content Container */
+    .terms-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Section blocks */
+    .terms-section {
+      margin-bottom: 3.5rem;
+    }
+
+    .terms-section + .terms-section {
+      padding-top: 3rem;
+      border-top: 1px solid rgba(245, 240, 234, 0.06);
+    }
+
+    .terms-section-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.35rem, 2vw, 1.75rem);
+      font-weight: 300;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    .terms-section-number {
+      font-family: "Montserrat", sans-serif;
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    .terms-body {
+      font-family: "Montserrat", sans-serif;
+      font-size: .84rem;
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: .025em;
+      color: var(--taupe);
+    }
+
+    .terms-body p {
+      margin-bottom: 1.15rem;
+    }
+
+    .terms-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .terms-body strong {
+      font-weight: 500;
+      color: var(--cream);
+    }
+
+    .terms-body code {
+      font-family: "Montserrat", monospace;
+      font-size: .8em;
+      color: var(--cream);
+      background: rgba(245, 240, 234, 0.06);
+      padding: 1px 6px;
+      border-radius: 2px;
+    }
+
+    .terms-body a {
+      color: var(--cream);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(245, 240, 234, 0.35);
+      transition: color .3s ease, text-decoration-color .3s ease;
+    }
+
+    .terms-body a:hover {
+      color: var(--gold);
+      text-decoration-color: var(--gold);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .luxe-footer {
+      background: #080807;
+      border-top: 1px solid rgba(154, 121, 69, 0.3);
+      color: var(--cream);
+      padding: 5rem 3.5rem 2.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 3rem 2.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: .15em;
+      color: var(--cream);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      transition: color .3s ease;
+    }
+
+    .footer-logo:hover { color: var(--gold); }
+
+    .footer-desc {
+      font-family: "Montserrat", sans-serif;
+      font-size: .78rem;
+      font-weight: 300;
+      letter-spacing: .03em;
+      line-height: 1.6;
+      color: var(--taupe);
+      max-width: 28ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-heading {
+      font-family: "Montserrat", sans-serif;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .footer-link {
+      font-family: "Montserrat", sans-serif;
+      font-size: .78rem;
+      font-weight: 300;
+      letter-spacing: .03em;
+      color: var(--taupe);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+
+    .footer-link:hover { color: var(--gold); }
+
+    .footer-social-icons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .social-icon-link {
+      color: var(--taupe);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: color .3s ease, transform .3s ease;
+    }
+
+    .social-icon-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .social-icon-link:hover {
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(245, 240, 234, 0.08);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copyright {
+      font-family: "Montserrat", sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--taupe);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom-link {
+      font-family: "Montserrat", sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--taupe);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+
+    .footer-bottom-link:hover { color: var(--gold); }
+
+    .footer-divider {
+      color: rgba(245, 240, 234, 0.2);
+      font-size: .72rem;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .luxe-nav { padding: 1.5rem 2rem; }
+      .terms-main { padding: 8.5rem 2rem 5.5rem; }
+      .luxe-footer { padding: 4rem 2rem 2rem; }
+      .footer-grid { grid-template-columns: 2fr repeat(2, 1fr); gap: 3rem 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem 1.5rem;
+      }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .luxe-nav { padding: 1.25rem 1.25rem; }
+      .terms-main { padding: 7rem 1.25rem 4rem; }
+      .terms-header { margin-bottom: 3rem; }
+      .terms-section { margin-bottom: 2.5rem; }
+      .terms-section + .terms-section { padding-top: 2.25rem; }
+      .luxe-footer { padding: 3.5rem 1.25rem 1.75rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.25rem; padding-bottom: 3rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ───────────────────────────────────────────── -->
+  <nav class="luxe-nav">
+    <div class="nav-left">
+      <a class="nav-logo" href="../index.html">LUXE</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="wishlist.html" class="nav-icon-link" id="nav-wishlist-link" aria-label="Wishlist">
+        <svg class="nav-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="wishlist-badge" id="wishlist-badge"></span>
+      </a>
+
+      <a href="bag.html" class="nav-icon-link" id="nav-bag-link" aria-label="Shopping Bag">
+        <svg class="nav-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 9H18V20C18 20.55 17.55 21 17 21H7C6.45 21 6 20.55 6 20V9Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M9 9V6C9 4.34 10.34 3 12 3C13.66 3 15 4.34 15 6V9" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="bag-badge" id="bag-badge"></span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ─── MAIN CONTENT ─────────────────────────────────────── -->
+  <main class="terms-main">
+
+    <!-- Page Header -->
+    <header class="terms-header">
+      <h1 class="terms-title">TERMS &amp; CONDITIONS</h1>
+      <p class="terms-subtitle">Understanding the terms of using LUXE.</p>
+      <div class="terms-divider" aria-hidden="true"></div>
+      <p class="terms-meta">Last reviewed: October 2026</p>
+    </header>
+
+    <!-- Content -->
+    <div class="terms-container">
+
+      <!-- Section 1: Introduction -->
+      <div class="terms-section">
+        <span class="terms-section-number">01</span>
+        <h2 class="terms-section-heading">Introduction</h2>
+        <div class="terms-body">
+          <p>Welcome to LUXE. These Terms and Conditions govern your access to and use of this website. By browsing, exploring, or interacting with any element of this site, you acknowledge that you have read, understood, and agreed to be bound by these terms in their entirety.</p>
+          <p><strong>Important context:</strong> The LUXE website currently operates strictly as a frontend demonstration project for a curated women-only fashion e-commerce experience. The interface, product listings, interactive controls, and visual elements are presented to showcase design, responsive layouts, and browser-side client behavior. This project does not operate an active commercial backend, payment processor, or physical distribution infrastructure.</p>
+          <p>These terms describe the nature, scope, and limitations of this demonstration website. If you do not agree with any part of these terms, your sole recourse is to discontinue using the website.</p>
+        </div>
+      </div>
+
+      <!-- Section 2: Website Purpose and Availability -->
+      <div class="terms-section">
+        <span class="terms-section-number">02</span>
+        <h2 class="terms-section-heading">Website Purpose and Availability</h2>
+        <div class="terms-body">
+          <p>The primary purpose of this website is to provide an aesthetic, editorial demonstration of a modern digital storefront. It allows visitors to explore curated apparel concepts, view interactive product cards, test color variant swatches, and experience client-side wishlist interactions.</p>
+          <p>Because this is a demonstration environment, we do not guarantee continuous, uninterrupted, or error-free availability of the website. Access to the website is provided on a temporary and "as-is" basis. We reserve the right to suspend, withdraw, amend, or restrict access to any section or feature of the website at any time without notice or liability.</p>
+          <p>We are not liable if, for any reason, the website or any of its constituent pages become inaccessible at any time or for any period.</p>
+        </div>
+      </div>
+
+      <!-- Section 3: Products, Images and Prices -->
+      <div class="terms-section">
+        <span class="terms-section-number">03</span>
+        <h2 class="terms-section-heading">Products, Images and Prices</h2>
+        <div class="terms-body">
+          <p>All apparel items, product photography, editorial imagery, textile descriptions, colorways, sizing representations, and monetary figures displayed across this website are demonstration content. They are provided solely to illustrate an authentic e-commerce catalog structure.</p>
+          <p>The display of any item, wraz with accompanying pricing information (such as prices formatted in Indian Rupees, e.g., &#8377;4,999), does not constitute a legally binding offer to sell, reserve, or deliver any merchandise. We do not warrant that product descriptions, dimensions, fabrics, or other specifications are complete, error-free, or representative of commercially available physical goods.</p>
+          <p>Items cannot be purchased, held, or claimed through this interface. Colors displayed on screen may vary depending on your monitor settings, display color profile, and ambient lighting conditions.</p>
+        </div>
+      </div>
+
+     <!-- Section 4: Wishlist and Browser Storage -->
+<div class="terms-section">
+  <span class="terms-section-number">04</span>
+  <h2 class="terms-section-heading">Wishlist and Browser Storage</h2>
+  <div class="terms-body">
+    <p>The LUXE frontend includes an interactive wishlist that allows visitors to save and remove favourite products using the heart icon on product cards. The shopping bag feature allows visitors to review their selected products and quantities.</p>
+
+    <p>These features use your browser's native <code>localStorage</code> API to remember selections across page reloads. The wishlist uses the <code>luxe_wishlist</code> key, while the shopping bag uses the <code>luxe_bag</code> key.</p>
+
+    <p><strong>Browser-based storage:</strong> Wishlist and shopping bag information is stored in your browser on your device. These features do not, by themselves, create a customer account or place an order. Information stored in the browser may remain available when you revisit the website using the same browser and device.</p>
+
+    <p><strong>Persistence and limitations:</strong> Saved information may no longer be available if you clear the website's local storage, use private or incognito browsing, switch browsers, or use another device. This information is not automatically synchronized across devices, and cleared data may not be recoverable.</p>
+
+    <p><strong>Scope:</strong> The <code>luxe_wishlist</code> key stores wishlist information, and the <code>luxe_bag</code> key stores shopping bag information, such as selected products and quantities. These browser features are not a customer account, checkout, or order-processing system. The Contact Us form operates separately and uses EmailJS to send submitted messages for email delivery.</p>
+  </div>
+</div>
+
+      <!-- Section 5: Orders and Payments -->
+      <div class="terms-section">
+        <span class="terms-section-number">05</span>
+        <h2 class="terms-section-heading">Orders and Payments</h2>
+        <div class="terms-body">
+          <p>This website does not support commercial transactions, shopping cart checkout processing, order placement, or monetary payment processing. No financial transaction mechanisms, payment gateway integrations, merchant processing accounts, or banking APIs are connected to this project.</p>
+          <p>Any visual buttons, links, or prompts relating to shopping bags, checkout flows, or ordering are non-transactional demonstration interfaces. Attempting to place an order will not result in a commercial contract, product reservation, debit from any financial instrument, or dispatch of merchandise.</p>
+          <p>Because no orders can be placed, no commercial order confirmations, delivery schedules, return policies, refund processes, or warranties of merchantability are applicable or enforceable under this demonstration build.</p>
+        </div>
+      </div>
+
+<!-- Section 6: User Responsibilities -->
+<div class="terms-section">
+  <span class="terms-section-number">06</span>
+  <h2 class="terms-section-heading">User Responsibilities</h2>
+  <div class="terms-body">
+    <p>By using the LUXE website, you agree to use it lawfully and responsibly for personal and informational purposes. You must not intentionally disrupt the website or interfere with its normal operation or other visitors' use of the site.</p>
+
+    <p>You must not:</p>
+
+    <p>&bull; Upload, introduce, or distribute malicious software or harmful code through the website.</p>
+
+    <p>&bull; Attempt to gain unauthorized access to the website, its hosting environment, or any connected systems.</p>
+
+    <p>&bull; Use automated scripts, crawlers, or scraping tools to extract website content, code, or images without appropriate permission.</p>
+
+    <p>&bull; Misuse the <a href="contact.html">Contact Us</a> form by submitting spam, impersonating another person, or sending unlawful, abusive, or defamatory messages.</p>
+
+    <p>&bull; Use the wishlist or shopping bag features in an attempt to disrupt the website or interfere with its intended demonstration functionality.</p>
+
+    <p>LUXE may update or restrict demonstration features as needed. These responsibilities describe the intended use of the website and do not imply that backend monitoring or enforcement systems are currently implemented.</p>
+  </div>
+</div>
+
+      <!-- Section 7: Intellectual Property -->
+      <div class="terms-section">
+        <span class="terms-section-number">07</span>
+        <h2 class="terms-section-heading">Intellectual Property</h2>
+        <div class="terms-body">
+          <p>The visual identity, brand name LUXE, graphic design, layout architecture, typography styling, custom cascading style sheets, scripts, editorial compositions, and original textual content featured on this website are protected by applicable intellectual property, design, and copyright laws.</p>
+          <p>All editorial photography, product mockup assets, and brand imagery used across the demonstration are included solely for presentation and stylistic demonstration purposes, subject to the rights and permissions of their respective owners and licensors. No ownership of proprietary third-party creative assets is claimed herein beyond their demonstration usage in this design context.</p>
+          <p>You may view and browse the website for personal, non-commercial illustrative evaluation. You may not reproduce, duplicate, copy, sell, trade, redistribute, or exploit any portion of the website's design, proprietary imagery, or code without express authorization.</p>
+        </div>
+      </div>
+
+      <!-- Section 8: External Links and Third-Party Services -->
+      <div class="terms-section">
+        <span class="terms-section-number">08</span>
+        <h2 class="terms-section-heading">External Links and Third-Party Services</h2>
+        <div class="terms-body">
+          <p>This website may incorporate links to third-party web destinations, such as social media platforms (Instagram, Facebook), font delivery networks (Google Fonts), or client-side form delivery services (<a href="https://www.emailjs.com" target="_blank" rel="noopener noreferrer">EmailJS</a> on the contact page).</p>
+          <p>These links and third-party resources are provided for convenience, aesthetic styling, and baseline demonstration capability. LUXE does not control, endorse, monitor, or assume any responsibility for the content, privacy practices, terms of service, or operational reliability of any third-party website or external service.</p>
+          <p>Your access to and use of third-party platforms are governed solely by the respective terms and privacy policies of those external providers. We encourage you to review their terms whenever navigating outside of this domain.</p>
+        </div>
+      </div>
+
+      <!-- Section 9: Website Limitations and Disclaimers -->
+      <div class="terms-section">
+        <span class="terms-section-number">09</span>
+        <h2 class="terms-section-heading">Website Limitations and Disclaimers</h2>
+        <div class="terms-body">
+          <p>The LUXE website is provided strictly on an "as-is" and "as-available" basis, without warranties, guarantees, or conditions of any kind, whether express, statutory, or implied. To the maximum extent permitted under applicable law, we expressly disclaim all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, title, non-infringement, and accuracy.</p>
+          <p>We make no representations or warranties that the website will meet your individual expectations, that its operation will be timely, secure, or free from bugs or technical omissions, or that defects will be corrected immediately.</p>
+          <p>Under no circumstances shall LUXE, its designers, developers, or affiliates be liable for any direct, indirect, incidental, consequential, special, or exemplary damages arising out of or in connection with your access to, use of, or inability to use this website, including but not limited to loss of data, browser storage corruption, or device incompatibility.</p>
+        </div>
+      </div>
+
+      <!-- Section 10: Changes to These Terms -->
+      <div class="terms-section">
+        <span class="terms-section-number">10</span>
+        <h2 class="terms-section-heading">Changes to These Terms</h2>
+        <div class="terms-body">
+          <p>We reserve the right to revise, update, or replace these Terms and Conditions at our sole discretion at any time as the project evolves, particularly as new frontend features, backend systems, or commercial operations are prepared.</p>
+          <p>Any revisions will be posted directly to this page, and the "Last reviewed" date at the top of the page will be updated accordingly. Such changes become effective immediately upon being published on the website.</p>
+          <p>Your continued access to or interaction with the website following the posting of revised terms constitutes your acceptance of and agreement to the updated Terms and Conditions. We encourage you to review this page periodically.</p>
+        </div>
+      </div>
+
+   <!-- Section 11: Contact Information -->
+<div class="terms-section">
+  <span class="terms-section-number">11</span>
+  <h2 class="terms-section-heading">Contact Information</h2>
+  <div class="terms-body">
+    <p>If you have any questions, comments, or feedback regarding these Terms and Conditions or the LUXE demonstration website, please use the <a href="contact.html">Contact Us</a> page to send your enquiry.</p>
+
+    <p>LUXE is currently a frontend demonstration project. Formal business registration details and official business contact information have not been provided in these Terms. The website's current features are intended to demonstrate the design and functionality of a women’s fashion storefront rather than operate as a fully functional commercial store.</p>
+  </div>
+</div>
+
+      <!-- Section 12: Applicable Law -->
+<div class="terms-section">
+  <span class="terms-section-number">12</span>
+  <h2 class="terms-section-heading">Applicable Law</h2>
+  <div class="terms-body">
+    <p>This section describes the current status of the LUXE frontend demonstration project. A specific governing jurisdiction and dispute-resolution process have not been identified in these Terms and Conditions.</p>
+
+    <p>If LUXE becomes a commercial business, these Terms should be reviewed and updated to identify the applicable law and any relevant legal requirements based on the business's actual operating jurisdiction.</p>
+  </div>
+</div>
+
+    </div>
+  </main>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="luxe-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand & Social -->
+        <div class="footer-brand">
+          <a href="../index.html" class="footer-logo">LUXE</a>
+          <p class="footer-desc">Timeless pieces designed for your everyday wardrobe.</p>
+          <div class="footer-social-icons">
+            <a href="#" class="social-icon-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: SHOP -->
+        <div>
+          <h3 class="footer-heading">SHOP</h3>
+          <ul class="footer-links-list">
+            <li><a href="../index.html#new-arrivals" class="footer-link">New Arrivals</a></li>
+            <li><a href="../index.html#dresses" class="footer-link">Dresses</a></li>
+            <li><a href="../index.html#tops" class="footer-link">Tops</a></li>
+            <li><a href="../index.html#bottoms" class="footer-link">Bottoms</a></li>
+            <li><a href="../index.html#sets" class="footer-link">Sets</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: HELP -->
+        <div>
+          <h3 class="footer-heading">HELP</h3>
+          <ul class="footer-links-list">
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+           
+          </ul>
+        </div>
+
+        <!-- Column 4: ABOUT -->
+        <div>
+          <h3 class="footer-heading">ABOUT</h3>
+          <ul class="footer-links-list">
+            
+            <li><a href="about.html" class="footer-link">About LUXE</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: SOCIAL -->
+        <div>
+          <h3 class="footer-heading">SOCIAL</h3>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Instagram</a></li>
+            <li><a href="#" class="footer-link">Facebook</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 LUXE. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy-policy.html" class="footer-bottom-link">Privacy Policy</a>
+          <span class="footer-divider" aria-hidden="true">|</span>
+          <a href="terms.html" class="footer-bottom-link">Terms &amp; Conditions</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ─── JS ─────────────────────────────────────────────────── -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wishlist Badge Counter — reads existing luxe_wishlist localStorage key
+      const wishlistBadge = document.getElementById('wishlist-badge');
+
+      function updateWishlistBadge() {
+        const rawStored = JSON.parse(localStorage.getItem('luxe_wishlist') || '[]');
+        const validStored = Array.isArray(rawStored)
+          ? rawStored.filter(id => typeof id === 'string' && id.includes('_'))
+          : [];
+        if (wishlistBadge) {
+          if (validStored.length > 0) {
+            wishlistBadge.textContent = validStored.length;
+            wishlistBadge.classList.add('has-items');
+          } else {
+            wishlistBadge.textContent = '';
+            wishlistBadge.classList.remove('has-items');
+          }
+        }
+      }
+
+      updateWishlistBadge();
+
+      // Bag Badge Counter
+      const bagBadge = document.getElementById('bag-badge');
+
+      function updateBagBadge() {
+        try {
+          const raw = JSON.parse(localStorage.getItem('luxe_bag') || '[]');
+          const items = Array.isArray(raw) ? raw : [];
+          const totalQty = items.reduce((acc, item) => acc + (item.qty || 1), 0);
+          if (bagBadge) {
+            if (totalQty > 0) {
+              bagBadge.textContent = totalQty;
+              bagBadge.classList.add('has-items');
+            } else {
+              bagBadge.textContent = '';
+              bagBadge.classList.remove('has-items');
+            }
+          }
+        } catch (e) {}
+      }
+
+      updateBagBadge();
+
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'luxe_wishlist') {
+          updateWishlistBadge();
+        }
+        if (e.key === 'luxe_bag') {
+          updateBagBadge();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

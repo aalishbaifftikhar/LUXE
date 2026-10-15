@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About LUXE — Story & Values</title>
+
+  <!-- ─── Google Fonts ─── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:       #0D0C0B;   /* Deep charcoal */
+      --cream:      #F5F0EA;   /* Warm ivory */
+      --taupe:      #A9A29A;   /* Secondary taupe */
+      --gold:       #9A7945;   /* Primary antique gold */
+      --dark-card:  #121110;   /* Dark card surface */
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: "Montserrat", sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────── */
+   .luxe-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.75rem 3.5rem;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      border: none;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: .35em;
+      color: var(--cream);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .3s ease;
+    }
+
+    .nav-logo:hover { color: var(--gold); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-icon-link {
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: color .3s ease;
+      position: relative;
+    }
+
+    .nav-icon-svg {
+      width: 19px;
+      height: 19px;
+      transition: stroke .3s ease;
+    }
+
+    .nav-icon-link:hover { color: var(--gold); }
+
+    .wishlist-badge,
+    .bag-badge {
+      position: absolute;
+      top: -4px; right: -6px;
+      width: 15px; height: 15px;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      border-radius: 50%;
+      display: none !important;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .wishlist-badge.has-items,
+    .bag-badge.has-items {
+      display: inline-flex !important;
+    }
+
+    /* ─── ABOUT HERO ─────────────────────────────────────────── */
+    .about-hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      /* margin-top: 2rem; */
+    }
+
+    .about-hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 82% 20%;
+      z-index: 1;
+    }
+
+    .about-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(13, 12, 11, 0.45) 0%,
+        rgba(13, 12, 11, 0.2) 40%,
+        rgba(13, 12, 11, 0.45) 100%
+      );
+      z-index: 2;
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 800px;
+      margin-top: 3.5rem;
+    }
+
+    .about-hero-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 4.8vw, 4.2rem);
+      font-weight: 300;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: .85rem;
+      line-height: 1.1;
+    }
+
+    .about-hero-subtitle {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: .02em;
+    }
+
+    /* ─── BRAND STORY SECTION ────────────────────────────────── */
+    .about-story-section {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 7rem 3.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(245, 240, 234, 0.08);
+    }
+
+    .about-story-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .about-story-eyebrow {
+      font-family: "Montserrat", sans-serif;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-story-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--cream);
+      margin-bottom: 2.25rem;
+    }
+
+    .about-story-text {
+      font-family: "Montserrat", sans-serif;
+      font-size: .88rem;
+      font-weight: 300;
+      line-height: 1.85;
+      letter-spacing: .03em;
+      color: var(--taupe);
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* ─── EDITORIAL IMAGE + STORY SECTION ────────────────────── */
+    .about-editorial-section {
+      background: #121110;
+      color: var(--cream);
+      padding: 6rem 3.5rem 8rem;
+      border-top: 1px solid rgba(245, 240, 234, 0.06);
+    }
+
+    .about-editorial-container {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 5.5rem;
+      align-items: center;
+    }
+
+    .about-editorial-img-wrap {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(245, 240, 234, 0.08);
+      background: var(--dark);
+    }
+
+    .about-editorial-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
+    .about-editorial-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .about-editorial-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.8rem, 2.6vw, 2.5rem);
+      font-weight: 300;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .about-editorial-divider {
+      width: 110px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.25rem 0 2rem;
+    }
+
+    .about-editorial-text {
+      font-family: "Montserrat", sans-serif;
+      font-size: .86rem;
+      font-weight: 300;
+      line-height: 1.85;
+      letter-spacing: .03em;
+      color: var(--taupe);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* ─── LUXE VALUES SECTION ────────────────────────────────── */
+    .about-values-section {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 6rem 3.5rem 8.5rem;
+      border-top: 1px solid rgba(245, 240, 234, 0.06);
+    }
+
+    .about-values-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-values-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 4.5rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4rem 3.5rem;
+    }
+
+    .value-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .value-icon {
+      width: 36px;
+      height: 36px;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .value-icon svg {
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.25;
+    }
+
+    .value-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+
+    .value-desc {
+      font-family: "Montserrat", sans-serif;
+      font-size: .82rem;
+      font-weight: 300;
+      line-height: 1.65;
+      letter-spacing: .03em;
+      color: var(--taupe);
+      max-width: 280px;
+    }
+
+    /* ─── CLOSING SECTION ────────────────────────────────────── */
+    .about-closing-section {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 8rem 3.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(245, 240, 234, 0.08);
+    }
+
+    .about-closing-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-closing-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.6vw, 3.4rem);
+      font-weight: 300;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .about-closing-sub {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: .02em;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .luxe-footer {
+      background: #080807;
+      border-top: 1px solid rgba(154, 121, 69, 0.3);
+      color: var(--cream);
+      padding: 5rem 3.5rem 2.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 3rem 2.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: .15em;
+      color: var(--cream);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      transition: color .3s ease;
+    }
+
+    .footer-logo:hover { color: var(--gold); }
+
+    .footer-desc {
+      font-family: "Montserrat", sans-serif;
+      font-size: .78rem;
+      font-weight: 300;
+      letter-spacing: .03em;
+      line-height: 1.6;
+      color: var(--taupe);
+      max-width: 28ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-heading {
+      font-family: "Montserrat", sans-serif;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .footer-link {
+      font-family: "Montserrat", sans-serif;
+      font-size: .78rem;
+      font-weight: 300;
+      letter-spacing: .03em;
+      color: var(--taupe);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+
+    .footer-link:hover { color: var(--gold); }
+
+    .footer-social-icons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .social-icon-link {
+      color: var(--taupe);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: color .3s ease, transform .3s ease;
+    }
+
+    .social-icon-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .social-icon-link:hover {
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(245, 240, 234, 0.08);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copyright {
+      font-family: "Montserrat", sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--taupe);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom-link {
+      font-family: "Montserrat", sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--taupe);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+
+    .footer-bottom-link:hover { color: var(--gold); }
+
+    .footer-divider {
+      color: rgba(245, 240, 234, 0.2);
+      font-size: .72rem;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .luxe-nav { padding: 1.5rem 2rem; }
+      .about-hero { height: 100vh; min-height: 480px; }
+      .about-hero-img { object-position: 83% 20%; }
+      .about-hero-content { margin-top: 3rem; }
+      .about-story-section { padding: 5.5rem 2rem; }
+      .about-editorial-section { padding: 5rem 2rem 6.5rem; }
+      .about-editorial-container { gap: 3.5rem; }
+      .about-values-section { padding: 5rem 2rem 6.5rem; }
+      .values-grid { gap: 3rem 2rem; }
+      .about-closing-section { padding: 6.5rem 2rem; }
+      .luxe-footer { padding: 4rem 2rem 2rem; }
+      .footer-grid { grid-template-columns: 2fr repeat(2, 1fr); gap: 3rem 2rem; }
+    }
+
+    @media (max-width: 900px) {
+      .about-hero-img { object-position: 85% 15%; }
+      .about-editorial-container {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .value-desc { max-width: 420px; }
+    }
+
+    @media (max-width: 768px) {
+      .about-hero { height: 100vh; min-height: 440px; }
+      .about-hero-img { object-position: 90% 15%; }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem 1.5rem;
+      }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .luxe-nav { padding: 1.25rem 1.25rem; }
+      .about-hero { height: 100vh; min-height: 400px; }
+      .about-hero-img { object-position: 80% 15%; }
+      .about-hero-content { margin-top: 2.5rem; }
+      .about-story-section { padding: 4.5rem 1.25rem; }
+      .about-editorial-section { padding: 4rem 1.25rem 5rem; }
+      .about-values-section { padding: 4.5rem 1.25rem 5.5rem; }
+      .about-closing-section { padding: 5rem 1.25rem; }
+      .luxe-footer { padding: 3.5rem 1.25rem 1.75rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.25rem; padding-bottom: 3rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ───────────────────────────────────────────── -->
+  <nav class="luxe-nav">
+    <div class="nav-left">
+      <a class="nav-logo" href="../index.html">LUXE</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="wishlist.html" class="nav-icon-link" id="nav-wishlist-link" aria-label="Wishlist">
+        <svg class="nav-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="wishlist-badge" id="wishlist-badge"></span>
+      </a>
+
+      <a href="bag.html" class="nav-icon-link" id="nav-bag-link" aria-label="Shopping Bag">
+        <svg class="nav-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 9H18V20C18 20.55 17.55 21 17 21H7C6.45 21 6 20.55 6 20V9Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M9 9V6C9 4.34 10.34 3 12 3C13.66 3 15 4.34 15 6V9" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="bag-badge" id="bag-badge"></span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ─── SECTION 1: ABOUT HERO ─────────────────────────────── -->
+  <section class="about-hero" aria-label="About LUXE Hero">
+    <img src="../assets/images/editorial/elevate-look.jpg" alt="About LUXE Editorial Model" class="about-hero-img" />
+    <div class="about-hero-overlay" aria-hidden="true"></div>
+    <div class="about-hero-content">
+      <h1 class="about-hero-title">ABOUT LUXE</h1>
+      <p class="about-hero-subtitle">Where timeless elegance meets modern expression.</p>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 2: BRAND STORY ─────────────────────────────── -->
+  <section class="about-story-section" aria-label="The LUXE Story">
+    <div class="about-story-container">
+      <p class="about-story-eyebrow">THE LUXE STORY</p>
+      <h2 class="about-story-heading">Designed for the woman who defines her own style.</h2>
+      <div class="about-story-text">
+        <p>LUXE was created around a simple idea: fashion should feel timeless, effortless, and distinctly yours.</p>
+        <p>We create thoughtfully designed womenswear with refined silhouettes, quality fabrics, and understated details — pieces made to move beyond seasons and become part of your personal style.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 3: EDITORIAL IMAGE + STORY ───────────────── -->
+  <section class="about-editorial-section" aria-label="Editorial Story">
+    <div class="about-editorial-container">
+      <!-- Left Column Image -->
+      <div class="about-editorial-img-wrap">
+        <img src="../assets/images/categories/sets.jpeg" alt="LUXE Tailored Silk Set" loading="lazy" />
+      </div>
+
+      <!-- Right Column Text -->
+      <div class="about-editorial-content">
+        <h2 class="about-editorial-heading">MORE THAN CLOTHING.</h2>
+        <div class="about-editorial-divider" aria-hidden="true"></div>
+        <div class="about-editorial-text">
+          <p>LUXE is about confidence, individuality, and the freedom to dress with intention.</p>
+          <p>We believe the most beautiful style is personal — not dictated by every passing trend.</p>
+          <p>At LUXE, we believe fashion is an expression of individuality, offering confidence through simplicity and intentional dressing. We celebrate the discerning woman who understands that true style is about quality, timelessness, and effortless grace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 4: LUXE VALUES ─────────────────────────────── -->
+  <section class="about-values-section" aria-label="LUXE Values">
+    <div class="about-values-container">
+      <h2 class="about-values-heading">WHAT WE BELIEVE</h2>
+
+      <div class="values-grid">
+        <!-- Value 01: Timeless -->
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 12c-2.5 0-4.5-1.5-4.5-3.5S9.5 5 12 5s4.5 1.5 4.5 3.5S14.5 12 12 12z"/>
+              <path d="M12 12c2.5 0 4.5 1.5 4.5 3.5S14.5 19 12 19s-4.5-1.5-4.5-3.5S9.5 12 12 12z"/>
+            </svg>
+          </div>
+          <h3 class="value-title">TIMELESS</h3>
+          <p class="value-desc">Pieces designed to move beyond fleeting trends.</p>
+        </article>
+
+        <!-- Value 02: Intentional -->
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="value-title">INTENTIONAL</h3>
+          <p class="value-desc">Thoughtful fabrics, silhouettes, and details chosen with purpose.</p>
+        </article>
+
+        <!-- Value 03: Effortless -->
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5l6.74-6.76z"/>
+              <line x1="16" y1="8" x2="2" y2="22"/>
+              <line x1="17.5" y1="15" x2="9" y2="15"/>
+            </svg>
+          </div>
+          <h3 class="value-title">EFFORTLESS</h3>
+          <p class="value-desc">Refined pieces designed to become an effortless part of everyday style.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 5: CLOSING STATEMENT ───────────────────────── -->
+  <section class="about-closing-section" aria-label="Closing Statement">
+    <div class="about-closing-container">
+      <h2 class="about-closing-heading">YOUR STYLE. YOUR STORY.</h2>
+      <p class="about-closing-sub">Welcome to LUXE.</p>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="luxe-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand & Social -->
+        <div class="footer-brand">
+          <a href="../index.html" class="footer-logo">LUXE</a>
+          <p class="footer-desc">Timeless pieces designed for your everyday wardrobe.</p>
+          <div class="footer-social-icons">
+            <a href="#" class="social-icon-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: SHOP -->
+        <div>
+          <h3 class="footer-heading">SHOP</h3>
+          <ul class="footer-links-list">
+            <li><a href="../index.html#new-arrivals" class="footer-link">New Arrivals</a></li>
+            <li><a href="../index.html#dresses" class="footer-link">Dresses</a></li>
+            <li><a href="../index.html#tops" class="footer-link">Tops</a></li>
+            <li><a href="../index.html#bottoms" class="footer-link">Bottoms</a></li>
+            <li><a href="../index.html#sets" class="footer-link">Sets</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: HELP -->
+        <div>
+          <h3 class="footer-heading">HELP</h3>
+          <ul class="footer-links-list">
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+        
+          </ul>
+        </div>
+
+        <!-- Column 4: ABOUT -->
+        <div>
+          <h3 class="footer-heading">ABOUT</h3>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-link">About LUXE</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: SOCIAL -->
+        <div>
+          <h3 class="footer-heading">SOCIAL</h3>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Instagram</a></li>
+            <li><a href="#" class="footer-link">Facebook</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 LUXE. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy-policy.html" class="footer-bottom-link">Privacy Policy</a>
+          <span class="footer-divider" aria-hidden="true">|</span>
+          <a href="#" class="footer-bottom-link">Terms &amp; Conditions</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ─── JS ─────────────────────────────────────────────────── -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const wishlistBadge = document.getElementById('wishlist-badge');
+
+      function updateWishlistBadge() {
+        const rawStored = JSON.parse(localStorage.getItem('luxe_wishlist') || '[]');
+        const validStored = Array.isArray(rawStored)
+          ? rawStored.filter(id => typeof id === 'string' && id.includes('_'))
+          : [];
+        if (wishlistBadge) {
+          if (validStored.length > 0) {
+            wishlistBadge.textContent = validStored.length;
+            wishlistBadge.classList.add('has-items');
+          } else {
+            wishlistBadge.textContent = '';
+            wishlistBadge.classList.remove('has-items');
+          }
+        }
+      }
+
+      updateWishlistBadge();
+
+      // Bag Badge Counter
+      const bagBadge = document.getElementById('bag-badge');
+
+      function updateBagBadge() {
+        try {
+          const raw = JSON.parse(localStorage.getItem('luxe_bag') || '[]');
+          const items = Array.isArray(raw) ? raw : [];
+          const totalQty = items.reduce((acc, item) => acc + (item.qty || 1), 0);
+          if (bagBadge) {
+            if (totalQty > 0) {
+              bagBadge.textContent = totalQty;
+              bagBadge.classList.add('has-items');
+            } else {
+              bagBadge.textContent = '';
+              bagBadge.classList.remove('has-items');
+            }
+          }
+        } catch (e) {}
+      }
+
+      updateBagBadge();
+
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'luxe_wishlist') {
+          updateWishlistBadge();
+        }
+        if (e.key === 'luxe_bag') {
+          updateBagBadge();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

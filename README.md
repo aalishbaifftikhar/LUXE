@@ -38,6 +38,7 @@ A modern women's fashion e-commerce frontend focused on elegant design, premium 
 - HTML5
 - CSS3
 - JavaScript
+- Cloudflare Pages
 
 ## 📂 Project Structure
 

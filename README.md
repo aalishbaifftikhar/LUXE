@@ -56,3 +56,4 @@ Frontend demonstration project. Backend functionality, authentication, and payme
 
 - GitHub: [@aalishbaifftikhar](https://github.com/aalishbaifftikhar)
 - Project: [LUXE Repository](https://github.com/aalishbaifftikhar/LUXE)
+- Live Website: https://luxe-dkt.pages.dev
